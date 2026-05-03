@@ -1,4 +1,4 @@
-import { api, fetchData } from '../api.js';
+import { fetchData } from '../api.js';
 
 const USER_ROUTE = "users"
 
