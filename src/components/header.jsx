@@ -1,3 +1,5 @@
+import { useLocation } from '@tanstack/react-router'
+
 const navigation = [
   { href: '/', label: 'Home' },
   { href: '/login', label: 'Login' },
@@ -5,7 +7,10 @@ const navigation = [
   { href: '/profile', label: 'Profile' },
 ]
 
-const Header = ({currentPath}) => {
+const Header = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <header className="border-b border-[#A77F60]/20 bg-[#F3E4C9]/95">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">

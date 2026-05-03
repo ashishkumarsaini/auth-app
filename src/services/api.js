@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.freeapi.app/api/v1';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -10,8 +9,12 @@ const api = axios.create({
 });
 
 export const fetchData = async (path, method, body) => {
-  const url = `${API_BASE_URL}/${path}`
-  const response = await api({ url, method, data: body });
+  const url = `${API_BASE_URL}/${path}`;
 
-  return response.json();
-}
+  try {
+    const response = await api({ url, method, data: body });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message || error;
+  }
+};
