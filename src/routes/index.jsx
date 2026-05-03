@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 const Home = () => (
-  <main className="mx-auto min-h-[calc(100vh-65px)] max-w-6xl px-6 py-14">
+  <div className="mx-auto min-h-[calc(100vh-65px)] max-w-6xl px-6 py-14">
     <section className="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr]">
       <div>
         <p className="text-sm font-bold uppercase tracking-widest text-[#8A5F41]">
@@ -51,7 +51,7 @@ const Home = () => (
         </div>
       </div>
     </section>
-  </main>
+  </div>
 )
 
 export const Route = createFileRoute('/')({
