@@ -1,3 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router';
+
 const stats = [
   ['12', 'Active sessions'],
   ['98%', 'Security score'],
@@ -60,4 +62,6 @@ const Profile = () => (
   </main>
 )
 
-export default Profile
+export const Route = createFileRoute('/profile/')({
+  component: Profile,
+})

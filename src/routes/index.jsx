@@ -1,3 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router'
+
 const Home = () => (
   <main className="mx-auto min-h-[calc(100vh-65px)] max-w-6xl px-6 py-14">
     <section className="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr]">
@@ -52,4 +54,6 @@ const Home = () => (
   </main>
 )
 
-export default Home
+export const Route = createFileRoute('/')({
+  component: Home,
+})
