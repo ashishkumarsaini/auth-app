@@ -5,13 +5,13 @@ const Home = () => (
     <section className="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr]">
       <div>
         <p className="text-sm font-bold uppercase tracking-widest text-[#8A5F41]">
-          Secure auth starter
+          Secure auth starter with tanstack router
         </p>
         <h1 className="mt-4 max-w-2xl text-4xl font-bold leading-tight text-[#2b211a] sm:text-5xl">
-          Simple file-based routing for your Vite app.
+          Simple file-based routing for your app.
         </h1>
         <p className="mt-5 max-w-xl text-lg leading-8 text-[#8A5F41]">
-          Home, login, and profile pages are loaded from files inside <span className="font-bold">src/pages</span>.
+          Home, login, and profile pages are loaded from files inside <span className="font-bold">src/routes</span>.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">

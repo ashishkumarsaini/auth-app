@@ -11,3 +11,14 @@ export const loginUser = async ({ email, password }) => {
   const loginRequestPath = `${USER_ROUTE}/login`
   return await fetchData(loginRequestPath, "POST", { email, password, });
 }
+
+export const logoutUser = async () => {
+  const logoutRequestPath = `${USER_ROUTE}/logout`
+  return await fetchData(logoutRequestPath, "POST", {});
+}
+
+export const getCurrentUser = async () => {
+  const currentUserRequestPath = `${USER_ROUTE}/current-user`
+
+  return await fetchData(currentUserRequestPath, "GET", {});
+}

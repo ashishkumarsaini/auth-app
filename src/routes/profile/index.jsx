@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 const stats = [
   ['12', 'Active sessions'],
@@ -61,5 +61,17 @@ const Profile = () => (
 )
 
 export const Route = createFileRoute('/profile/')({
+  beforeLoad: ({ context, location }) => {
+    console.log(context.auth);
+
+    if (!context.auth.user) {
+      throw redirect({
+        to: '/login',
+        search: {
+          redirect: location.href,
+        },
+      })
+    }
+  },
   component: Profile,
 })

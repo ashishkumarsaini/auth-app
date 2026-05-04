@@ -5,14 +5,26 @@ const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
-  },
+  }
 });
+
+api.interceptors.request.use((config) => {
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+})
 
 export const fetchData = async (path, method, body) => {
   const url = `${API_BASE_URL}/${path}`;
 
   try {
     const response = await api({ url, method, data: body });
+    console.log(response);
+
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message || error;
