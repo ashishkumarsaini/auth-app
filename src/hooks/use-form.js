@@ -1,4 +1,6 @@
-export const useForm = (onSubmit, initialData, validateData) => {
+import { useState } from "react";
+
+export const useForm = (onSubmit, initialData, validateData, onSuccess = () => null) => {
   const [formData, setFormData] = useState(initialData);
   const [formError, setFormError] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -35,6 +37,7 @@ export const useForm = (onSubmit, initialData, validateData) => {
         throw new Error(response.message)
       }
       setSuccess(true);
+      onSuccess();
     } catch (error) {
       setSubmitMessage(error.message);
       setSuccess(false);

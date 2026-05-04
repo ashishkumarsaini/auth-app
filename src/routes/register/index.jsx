@@ -89,16 +89,16 @@ const Register = () => {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
-          <label className="flex items-center gap-2 font-medium text-[#8A5F41]">
+          {/* <label className="flex items-center gap-2 font-medium text-[#8A5F41]">
             <input className="h-4 w-4 accent-[#CCD67F]" type="checkbox" />
             Remember me
-          </label>
+          </label> */}
           <a className="font-semibold text-[#8A5F41] hover:text-[#A77F60]" href="/">
             Already have an account? Login here
           </a>
         </div>
 
-        {isloading ? (
+        {isLoading ? (
           <button
             className="rounded-lg bg-[#8A5F41] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#A77F60]"
             type="submit"

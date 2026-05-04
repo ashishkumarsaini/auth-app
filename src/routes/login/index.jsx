@@ -1,10 +1,31 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { useForm } from '../../hooks/use-form';
+import { loginUser } from '../../services/auth';
 
 
 const Login = () => {
-  const [] = useState({
+  const navigateTo = useNavigate();
 
-  });
+  const validateData = () => {
+    const errors = {};
+    if (!formData.email) {
+      errors.email = 'Email is required'
+    }
+    if (!formData.password) {
+      errors.password = 'Password is required'
+    }
+    return errors;
+  }
+
+  const initialData = {
+    email: '',
+    password: ''
+  };
+
+  const { formData, formError, handleSubmitData, handleChangeFormData, isLoading, success, submitMessage } = useForm(loginUser, initialData, validateData, () => {
+    console.log('Navigating to profile')
+    navigateTo({ to: '/profile' })
+  })
 
   return (
     <section className="mx-auto grid w-full max-w-4xl overflow-hidden rounded-2xl border border-[#A77F60]/25 bg-white shadow-sm lg:grid-cols-[0.85fr_1fr]">
@@ -20,7 +41,7 @@ const Login = () => {
         </p>
       </div>
 
-      <form className="grid gap-5 p-8">
+      <form className="grid gap-5 p-8" onSubmit={handleSubmitData}>
         <div>
           <h2 className="text-2xl font-bold text-[#2b211a]">Login</h2>
           <p className="mt-1 text-sm text-[#A77F60]">Enter your details below.</p>
@@ -35,7 +56,10 @@ const Login = () => {
             id="email"
             placeholder="you@example.com"
             type="email"
+            value={formData.email}
+            onChange={handleChangeFormData('email')}
           />
+          {formError.email && <small className="text-red-500 mt-2">{formError.email}</small>}
         </div>
 
         <div>
@@ -47,7 +71,10 @@ const Login = () => {
             id="password"
             placeholder="Enter your password"
             type="password"
+            value={formData.password}
+            onChange={handleChangeFormData('password')}
           />
+          {formError.password && <small className="text-red-500 mt-2">{formError.password}</small>}
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
@@ -60,12 +87,30 @@ const Login = () => {
           </a>
         </div>
 
-        <button
-          className="rounded-lg bg-[#8A5F41] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#A77F60]"
-          type="submit"
-        >
-          Sign in
-        </button>
+        {isLoading ? (
+          <button
+            className="rounded-lg bg-[#8A5F41] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#A77F60]"
+            type="submit"
+            disabled
+          >
+            Loading...
+          </button>
+        ) : (
+          <button
+            className="rounded-lg bg-[#8A5F41] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#A77F60]"
+            type="submit"
+          >
+            Login Account
+          </button>
+        )}
+
+        {
+          submitMessage && (
+            <p className={`text-sm ${success ? 'text-green-500' : 'text-red-500'}`}>
+              {submitMessage}
+            </p>
+          )
+        }
       </form>
     </section>
   )
