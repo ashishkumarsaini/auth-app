@@ -9,10 +9,10 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem("accessToken");
+  const accessToken = localStorage.getItem("access_token");
 
   if (accessToken) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${accessToken}`;
   }
 
   return config;
@@ -23,7 +23,6 @@ export const fetchData = async (path, method, body) => {
 
   try {
     const response = await api({ url, method, data: body });
-    console.log(response);
 
     return response.data;
   } catch (error) {

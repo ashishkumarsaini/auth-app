@@ -1,10 +1,12 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { useForm } from '../../hooks/use-form';
 import { loginUser } from '../../services/auth';
+import { useAuth } from '../../hooks/useAuth';
 
 
 const Login = () => {
   const navigateTo = useNavigate();
+  const { setUser } = useAuth()
 
   const validateData = () => {
     const errors = {};
@@ -22,8 +24,12 @@ const Login = () => {
     password: ''
   };
 
-  const { formData, formError, handleSubmitData, handleChangeFormData, isLoading, success, submitMessage } = useForm(loginUser, initialData, validateData, () => {
-    console.log('Navigating to profile')
+  const { formData, formError, handleSubmitData, handleChangeFormData, isLoading, success, submitMessage } = useForm(loginUser, initialData, validateData, (data) => {
+    setUser(data.user);
+
+    localStorage.setItem('access_token', data.accessToken);
+    localStorage.setItem('refresh_token', data.refreshToken);
+
     navigateTo({ to: '/profile' })
   })
 
@@ -82,9 +88,9 @@ const Login = () => {
             <input className="h-4 w-4 accent-[#CCD67F]" type="checkbox" />
             Remember me
           </label>
-          <a className="font-semibold text-[#8A5F41] hover:text-[#A77F60]" href="/">
+          <Link className="font-semibold text-[#8A5F41] hover:text-[#A77F60]" to="/">
             Forgot password?
-          </a>
+          </Link>
         </div>
 
         {isLoading ? (

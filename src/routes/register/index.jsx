@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { registerUser } from '../../services/auth';
 import { useForm } from '../../hooks/use-form';
 
@@ -93,9 +93,9 @@ const Register = () => {
             <input className="h-4 w-4 accent-[#CCD67F]" type="checkbox" />
             Remember me
           </label> */}
-          <a className="font-semibold text-[#8A5F41] hover:text-[#A77F60]" href="/">
+          <Link className="font-semibold text-[#8A5F41] hover:text-[#A77F60]" to="/">
             Already have an account? Login here
-          </a>
+          </Link>
         </div>
 
         {isLoading ? (

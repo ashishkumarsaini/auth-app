@@ -32,12 +32,11 @@ export const useForm = (onSubmit, initialData, validateData, onSuccess = () => n
 
       setSubmitMessage(response?.message);
 
-      setSubmitMessage(response.message);
       if (!response.success) {
         throw new Error(response.message)
       }
       setSuccess(true);
-      onSuccess();
+      onSuccess(response.data);
     } catch (error) {
       setSubmitMessage(error.message);
       setSuccess(false);

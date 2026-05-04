@@ -4,7 +4,8 @@ import { getCurrentUser } from "../services/auth";
 
 export const AuthContext = createContext({
   user: null,
-  setUser: () => { }
+  setUser: () => { },
+  isLoading: true,
 });
 
 export const AuthProvider = ({ children }) => {
@@ -19,17 +20,19 @@ export const AuthProvider = ({ children }) => {
 
 
   useEffect(() => {
-    if (!user) {
-      setIsLoading(true);
-
-      const getUser = async () => {
-        const user = await getCurrentUser();
-        setUser(user);
+    const getUser = async () => {
+      try {
+        const fetchedUser = await getCurrentUser();
+        setUser(fetchedUser.data);
+      } catch (error) {
+        console.error("Failed to fetch user:", error);
+        setUser(null);
+      } finally {
         setIsLoading(false);
       }
-
-      getUser();
     }
+
+    getUser();
   }, []);
 
   return (

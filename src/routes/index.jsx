@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 
 const Home = () => (
   <div className="mx-auto min-h-[calc(100vh-65px)] max-w-6xl px-6 py-14">
@@ -15,18 +15,18 @@ const Home = () => (
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          <a
+          <Link
             className="rounded-lg bg-[#8A5F41] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#A77F60]"
-            href="/login"
+            to="/login"
           >
             Go to login
-          </a>
-          <a
+          </Link>
+          <Link
             className="rounded-lg border border-[#A77F60]/35 bg-white px-5 py-3 text-sm font-bold text-[#8A5F41] transition hover:border-[#8A5F41]"
-            href="/profile"
+            to="/profile"
           >
             View profile
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -38,15 +38,15 @@ const Home = () => (
             ['/login', 'Login'],
             ['/register', 'Register'],
             ['/profile', 'Profile'],
-          ].map(([path, title, file]) => (
-            <a
+          ].map(([path, title]) => (
+            <Link
               className="rounded-xl bg-[#F3E4C9]/65 p-4 transition hover:bg-[#CCD67F]/40"
-              href={path}
+              to={path}
               key={path}
             >
               <p className="text-sm font-bold text-[#8A5F41]">{path}</p>
               <p className="mt-1 font-semibold text-[#2b211a]">{title}</p>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
