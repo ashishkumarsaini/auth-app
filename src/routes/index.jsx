@@ -34,9 +34,10 @@ const Home = () => (
         <h2 className="text-xl font-bold text-[#2b211a]">Available routes</h2>
         <div className="mt-5 grid gap-3">
           {[
-            ['/', 'Home', 'src/pages/index.jsx'],
-            ['/login', 'Login', 'src/pages/login.jsx'],
-            ['/profile', 'Profile', 'src/pages/profile.jsx'],
+            ['/', 'Home'],
+            ['/login', 'Login'],
+            ['/register', 'Register'],
+            ['/profile', 'Profile'],
           ].map(([path, title, file]) => (
             <a
               className="rounded-xl bg-[#F3E4C9]/65 p-4 transition hover:bg-[#CCD67F]/40"
@@ -45,7 +46,6 @@ const Home = () => (
             >
               <p className="text-sm font-bold text-[#8A5F41]">{path}</p>
               <p className="mt-1 font-semibold text-[#2b211a]">{title}</p>
-              <p className="mt-1 text-sm text-[#A77F60]">{file}</p>
             </a>
           ))}
         </div>

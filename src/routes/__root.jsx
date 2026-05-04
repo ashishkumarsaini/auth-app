@@ -5,8 +5,8 @@ import '../index.css';
 const RootLayout = () => (
   <>
     <Header />
-    <main className="mx-auto min-h-[calc(100vh-65px)] max-w-6xl px-6 py-14">
-    <Outlet />
+    <main className="mx-auto min-h-[calc(100vh-77px)] max-w-6xl px-6 py-14">
+      <Outlet />
     </main>
   </>
 )
