@@ -117,7 +117,7 @@ const Register = () => {
 
         {
           submitMessage && (
-            <p className={`text-sm ${success ? 'text-green-500' : 'text-red-500'}`}>
+            <p className={`text-sm ${success ? 'text-[#2b211a]' : 'text-red-500'}`}>
               {submitMessage}
             </p>
           )
